@@ -1,0 +1,1 @@
+/Users/makoto/src/dotfiles/.emacs.d
