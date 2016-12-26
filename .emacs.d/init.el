@@ -2,6 +2,7 @@
 ;;;;
 
 
+(setq vc-follow-symlinks t)
 
 (global-font-lock-mode t)
 
@@ -66,7 +67,7 @@
 (global-set-key "\C-z" 'undo)
 (global-set-key "\C-t" 'other-window)
 (global-set-key "\C-cp" (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
-(global-set-key "\C-cm" (lambda () (interactive) (find-file "~/memo/memo.md")))
+(global-set-key "\C-cm" (lambda () (interactive) (find-file "~/src/memo/memo.md")))
 (global-set-key "\C-cs" (lambda () (interactive) (switch-to-buffer "*scratch*")))
 (global-set-key "\C-x9" 'follow-delete-other-windows-and-split)
 
