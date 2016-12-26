@@ -2,11 +2,8 @@
 
 DOTS=(.bashrc .gitconfig .gitignore .git-prompt.sh .emacs.d)
 for file in ${DOTS[@]}; do
-    if [ -e $HOME/$file ]; then
-	tar zcf $HOME/$file.tgz $HOME/$file
-	rm -rf $HOME/$file
-    fi
+    [ -e $HOME/$file ] && rm -rf $HOME/$file
     ln -s $HOME/src/dotfiles/$file $HOME/$file \
-    && echo $HOME/$file
+    && ls -l $HOME/$file
 done
 
