@@ -23,10 +23,10 @@ PS1='\[\e[1m\]\w$(__git_ps1 "(%s)") $ \[\e[0m\]'
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-alias ls='ls -vF'
-alias la='ls -va'
-alias ll='ls -vl'
-alias lla='ls -vla'
+alias ls='ls -vF --color'
+alias la='ls -va --color'
+alias ll='ls -vl --color'
+alias lla='ls -vla --color'
 alias cdd='cd ..'
 [ $(uname) == 'Darwin' ] && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 [ $(uname) == 'Linux' ]  && alias emacs='emacs -nw'
