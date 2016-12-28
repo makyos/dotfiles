@@ -28,8 +28,8 @@ alias la='ls -va'
 alias ll='ls -vl'
 alias lla='ls -vla'
 alias cdd='cd ..'
-alias e='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-alias emacs='emacs -nw'
+[ $(uname) == 'Darwin' ] && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+[ $(uname) == 'Linux' ]  && alias emacs='emacs -nw'
 alias alm="echo -n $'\a'"
 alias rm="rm"
 #alias tgz="tgz"
