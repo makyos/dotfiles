@@ -2,14 +2,6 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=~/usr/bin:$PATH
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
-
-## \[ \] （文字数除外）で囲わないと表示が時々おかしくなるよ
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWCOLORHINTS=1
-source ~/.git-prompt.sh
-PS1='\[\e[1m\]\w$(__git_ps1 "(%s)") $ \[\e[0m\]'
-
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
@@ -43,6 +35,17 @@ function darwin() {
 function linux() {
     [ $(uname) == 'linux'  ]
 }
+
+
+#### PS1
+## \[ \] （文字数除外）で囲わないと表示が時々おかしくなるよ
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWCOLORHINTS=1
+source ~/.git-prompt.sh
+PS1='\[\e[1m\]\w$(__git_ps1 "(%s)") $ \[\e[0m\]'
+
+
 
 alias ls='ls -vF'
 alias la='ls -va'
