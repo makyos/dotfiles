@@ -60,6 +60,7 @@ alias v="vagrant"
 alias src="cd ~/src"
 alias sand="cd ~/src/sandbox"
 alias bs='browser-sync start --server --files "./**/*.html" --files "./**/*.css" --files "./**/*.js"'
+alias clamav="sudo freshclam;sudo clamscan -r -i"
 
 darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 darwin && alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -s"
@@ -83,3 +84,7 @@ export PATH=$NODEBREW_ROOT/current/bin:$PATH
 
 ## Microsoft PICT
 export PATH=~/src/gitclone/pict:$PATH
+
+
+. ~/.token
+
