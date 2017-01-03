@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTS=(.bashrc .gitconfig .gitignore .git-prompt.sh .emacs.d)
+DOTS=(.bashrc .gitconfig .gitignore .git-prompt.sh .emacs.d .tmux.conf)
 for file in ${DOTS[@]}; do
     [ -e $HOME/$file ] && rm -rf $HOME/$file
     ln -s $HOME/src/dotfiles/$file $HOME/$file \

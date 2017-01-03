@@ -85,6 +85,13 @@ export PATH=$NODEBREW_ROOT/current/bin:$PATH
 ## Microsoft PICT
 export PATH=~/src/gitclone/pict:$PATH
 
-
+## API TOKEN
 . ~/.token
+
+
+## TMUX
+if [ $SHLVL = 1 ]; then
+    tmux
+fi
+
 
