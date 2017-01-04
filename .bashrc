@@ -33,7 +33,7 @@ function darwin() {
 }
 
 function linux() {
-    [ $(uname) == 'linux'  ]
+    [ $(uname) == 'Linux'  ]
 }
 
 
@@ -86,12 +86,10 @@ export PATH=$NODEBREW_ROOT/current/bin:$PATH
 export PATH=~/src/gitclone/pict:$PATH
 
 ## API TOKEN
-. ~/.token
+darwin && . ~/.token
 
 
 ## TMUX
-if [ $SHLVL = 1 ]; then
-    tmux
-fi
+tmux ls
 
-
+#linux && /usr/lib/mozc/mozc_renderer &
