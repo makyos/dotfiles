@@ -42,6 +42,7 @@ function linux() {
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWCOLORHINTS=1
+source ~/.git-completion.bash
 source ~/.git-prompt.sh
 PS1='\[\e[1m\]\w$(__git_ps1 "(%s)") $ \[\e[0m\]'
 
