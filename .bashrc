@@ -69,7 +69,7 @@ darwin && alias t="open -a /Applications/Utilities/Terminal.app ."
 darwin && alias brew_cask_upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 linux  && alias emacs='emacs -nw'
 
-
+alias tmuxn='tmux new -s $(basename $PWD)'
 
 # eval $(docker-machine env default)
 
