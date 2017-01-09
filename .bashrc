@@ -71,8 +71,8 @@ darwin && alias brew_cask_upgrade='for c in `brew cask list`; do ! brew cask inf
 linux  && alias emacs='emacs -nw'
 
 alias tmuxn='tmux new -s $(basename $PWD)'
+alias tmuxa='tmux a -t $(basename $PWD)'
 
-# eval $(docker-machine env default)
 
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/.go
