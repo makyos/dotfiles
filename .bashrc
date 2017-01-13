@@ -89,6 +89,8 @@ export PATH=~/src/gitclone/pict:$PATH
 ## API TOKEN
 darwin && . ~/.token
 
+## Docker
+export DOCKER_HOST="localhost:4243" 
 
 ## TMUX
 tmux ls
