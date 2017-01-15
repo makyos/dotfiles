@@ -90,9 +90,12 @@ export PATH=~/src/gitclone/pict:$PATH
 darwin && . ~/.token
 
 ## Docker
-export DOCKER_HOST="localhost:4243" 
+#export DOCKER_HOST="localhost:4243" 
 
 ## TMUX
 tmux ls
 
 #linux && /usr/lib/mozc/mozc_renderer &
+
+## sudo complete
+complete -cf sudo
