@@ -73,7 +73,7 @@ linux  && alias emacs='emacs -nw'
 alias tmuxn='tmux new -s $(basename $PWD)'
 alias tmuxa='tmux a -t $(basename $PWD)'
 
-
+##
 # export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
