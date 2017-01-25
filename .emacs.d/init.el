@@ -160,3 +160,6 @@
 
 ;;;; magit
 (require 'magit)
+
+;;;; theme
+(load-theme 'misterioso t)

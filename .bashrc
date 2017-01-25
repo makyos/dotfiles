@@ -69,6 +69,10 @@ darwin && alias sw="xcrun swift"
 darwin && alias t="open -a /Applications/Utilities/Terminal.app ."
 darwin && alias brew_cask_upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 linux  && alias emacs='emacs -nw'
+linux  && alias ls='ls -vF --color'
+linux  && alias la='ls -va --color'
+linux  && alias ll='ls -vl --color'
+linux  && alias lla='ls -vla --color'
 
 alias tmuxn='tmux new -s $(basename $PWD)'
 alias tmuxa='tmux a -t $(basename $PWD)'
@@ -80,8 +84,8 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 export PATH=$PATH:/usr/local/share/npm/bin
 
-export NODEBREW_ROOT=$HOME/.nodebrew
-export PATH=$NODEBREW_ROOT/current/bin:$PATH
+darwin && export NODEBREW_ROOT=$HOME/.nodebrew
+darwin && export PATH=$NODEBREW_ROOT/current/bin:$PATH
 
 ## Microsoft PICT
 export PATH=~/src/gitclone/pict:$PATH
