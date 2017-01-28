@@ -47,12 +47,21 @@ source ~/.git-prompt.sh
 PS1='\[\e[1m\]\w$(__git_ps1 "(%s)") $ \[\e[0m\]'
 
 
-
-alias ls='ls -vF'
-alias la='ls -va'
-alias ll='ls -vl'
-alias lla='ls -vla'
+#### ls
 alias cdd='cd ..'
+darwin && alias ls='ls -vF'
+darwin && alias la='ls -va'
+darwin && alias ll='ls -vl'
+darwin && alias lla='ls -vla'
+linux  && alias ls='ls -vF --color'
+linux  && alias la='ls -va --color'
+linux  && alias ll='ls -vl --color'
+linux  && alias lla='ls -vla --color'
+
+#### emacs
+darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+linux  && alias emacs='emacs -nw'
+
 alias alm="echo -n $'\a'"
 alias rm="rm"
 alias gosh="rlwrap gosh"
@@ -63,19 +72,12 @@ alias sand="cd ~/src/sandbox"
 alias bs='browser-sync start --server --files "./**/*.html" --files "./**/*.css" --files "./**/*.js"'
 alias clamav="sudo freshclam;sudo clamscan -r -i"
 
-darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+
 darwin && alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -s"
 darwin && alias sw="xcrun swift"
 darwin && alias t="open -a /Applications/Utilities/Terminal.app ."
 darwin && alias brew_cask_upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
-linux  && alias emacs='emacs -nw'
-linux  && alias ls='ls -vF --color'
-linux  && alias la='ls -va --color'
-linux  && alias ll='ls -vl --color'
-linux  && alias lla='ls -vla --color'
 
-alias tmuxn='tmux new -s $(basename $PWD)'
-alias tmuxa='tmux a -t $(basename $PWD)'
 
 ##
 # export GOROOT=/usr/local/opt/go/libexec
@@ -90,13 +92,15 @@ darwin && export PATH=$NODEBREW_ROOT/current/bin:$PATH
 ## Microsoft PICT
 export PATH=~/src/gitclone/pict:$PATH
 
-## API TOKEN
+## BREW API TOKEN
 darwin && . ~/.token
 
 ## Docker
 #export DOCKER_HOST="localhost:4243" 
 
 ## TMUX
+alias tmuxn='tmux new -s $(basename $PWD)'
+alias tmuxa='tmux a -t $(basename $PWD)'
 tmux ls
 
 #linux && /usr/lib/mozc/mozc_renderer &
