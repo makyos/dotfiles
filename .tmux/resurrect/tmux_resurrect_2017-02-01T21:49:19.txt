@@ -1,0 +1,3 @@
+pane	dotfiles	0	:bash	1	:*	0	:/Users/makoto/src/dotfiles	1	bash	:
+window	dotfiles	0	1	:*	ccfd,105x48,0,0,0
+state	dotfiles	
