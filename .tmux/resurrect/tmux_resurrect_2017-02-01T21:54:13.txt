@@ -1,0 +1,8 @@
+pane	1	0	:bash	1	:*	0	:/Users/makoto	1	bash	:
+pane	docker	0	:watch	1	:*	0	:/Users/makoto/src/sandbox/docker	1	watch	:watch -n 2 docker ps -a
+pane	docker	0	:watch	1	:*	1	:/Users/makoto/src/sandbox/docker	0	bash	:
+pane	dotfiles	0	:bash	1	:*	0	:/Users/makoto/src/dotfiles	1	bash	:
+window	1	0	1	:*	b25e,80x24,0,0,1
+window	docker	0	1	:*	0769,158x48,0,0[158x11,0,0,2,158x36,0,12,3]
+window	dotfiles	0	1	:*	c3bd,158x45,0,0,0
+state	docker	
