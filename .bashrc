@@ -48,9 +48,10 @@ source ~/.git-prompt.sh
 #PS1='\[\033[07m\e[1m\]\w$(__git_ps1 "(%s)")\033[00m\n$ \[\e[0m\]'
 #PS1='\[\033[07m\e[1m\]# \u@\h:\w$(__git_ps1 "(%s)") \033[00m\n# \[\e[0m\]'
 #PS1='\[\033[07m\] \u@\h:\w$(__git_ps1 "(%s)") \033[00m\n→  '
-PS1_DECO_START="\[\033[7m\]"
+PS1_DECO_REVERSE="\[\033[7m\]"
+PS1_DECO_UNDLINE="\[\033[4m\]"
 PS1_DECO_END="\[\033[0m\]"
-PS1="${PS1_DECO_START=}[\u@\h:\w$(__git_ps1 "(%s)")]"
+PS1="${PS1_DECO_UNDLINE}\u@\h:\w$(__git_ps1 "(%s)")${PS1_DECO_END} "
 
 #### ls
 alias cdd='cd ..'
