@@ -44,8 +44,13 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWCOLORHINTS=1
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
-PS1='\[\e[1m\]\w$(__git_ps1 "(%s)") $ \[\e[0m\]'
-
+#PS1='\[\e[1m\]\w$(__git_ps1 "(%s)")\n$ \[\e[0m\]'
+#PS1='\[\033[07m\e[1m\]\w$(__git_ps1 "(%s)")\033[00m\n$ \[\e[0m\]'
+#PS1='\[\033[07m\e[1m\]# \u@\h:\w$(__git_ps1 "(%s)") \033[00m\n# \[\e[0m\]'
+#PS1='\[\033[07m\] \u@\h:\w$(__git_ps1 "(%s)") \033[00m\n→  '
+PS1_DECO_START="\[\033[7m\]"
+PS1_DECO_END="\[\033[0m\]"
+PS1="${PS1_DECO_START=}[\u@\h:\w$(__git_ps1 "(%s)")]"
 
 #### ls
 alias cdd='cd ..'
@@ -107,3 +112,5 @@ tmux ls
 
 ## sudo complete
 complete -cf sudo
+
+source $HOME/.cargo/env
