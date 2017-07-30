@@ -51,7 +51,7 @@ source ~/.git-prompt.sh
 PS1_DECO_REVERSE="\[\033[7m\]"
 PS1_DECO_UNDLINE="\[\033[4m\]"
 PS1_DECO_END="\[\033[0m\]"
-PS1="${PS1_DECO_UNDLINE}\u@\h:\w$(__git_ps1 "(%s)")${PS1_DECO_END} "
+PS1="${PS1_DECO_REVERSE} \u@\h:\w$(__git_ps1 "(%s)") ${PS1_DECO_END} "
 
 #### ls
 alias cdd='cd ..'
