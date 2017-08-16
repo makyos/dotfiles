@@ -114,3 +114,4 @@ tmux ls
 complete -cf sudo
 
 source $HOME/.cargo/env
+export PATH="$HOME/.embulk/bin:$PATH"
