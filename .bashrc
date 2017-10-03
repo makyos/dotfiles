@@ -101,7 +101,7 @@ export PATH=~/src/gitclone/pict:$PATH
 darwin && . ~/.token
 
 ## Docker
-#export DOCKER_HOST="localhost:4243" 
+#export DOCKER_HOST="localhost:4243"
 
 ## TMUX
 alias tmuxn='tmux new -s $(basename $PWD)'
@@ -115,3 +115,9 @@ complete -cf sudo
 
 source $HOME/.cargo/env
 export PATH="$HOME/.embulk/bin:$PATH"
+
+
+## swift
+SWIFT_ROOT="/home/eng/Downloads/swift-4.0-RELEASE-ubuntu16.10/usr"
+linux && export PATH=${SWIFT_ROOT}/bin:"${PATH}"
+linux && alias swift="swift -I ${SWIFT_ROOT}/lib/swift/clang/include"
