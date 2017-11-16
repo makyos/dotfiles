@@ -159,7 +159,7 @@
 ;; (indent-guide-global-mode)
 
 ;;;; magit
-(require 'magit)
+;(require 'magit)
 
 ;;;; theme
 (load-theme 'misterioso t)

@@ -101,7 +101,7 @@ export PATH=~/src/gitclone/pict:$PATH
 darwin && . ~/.token
 
 ## Docker
-#export DOCKER_HOST="localhost:4243"
+linux && DOCKER_HOST="tcp://0.0.0.0:2375"
 
 ## TMUX
 alias tmuxn='tmux new -s $(basename $PWD)'
@@ -113,7 +113,10 @@ tmux ls
 ## sudo complete
 complete -cf sudo
 
-source $HOME/.cargo/env
+## Rust
+# source $HOME/.cargo/env
+
+## embulk
 export PATH="$HOME/.embulk/bin:$PATH"
 
 
