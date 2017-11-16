@@ -124,3 +124,7 @@ export PATH="$HOME/.embulk/bin:$PATH"
 SWIFT_ROOT="/home/eng/Downloads/swift-4.0-RELEASE-ubuntu16.10/usr"
 linux && export PATH=${SWIFT_ROOT}/bin:"${PATH}"
 linux && alias swift="swift -I ${SWIFT_ROOT}/lib/swift/clang/include"
+
+## rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+
