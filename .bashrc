@@ -101,7 +101,7 @@ export PATH=~/src/gitclone/pict:$PATH
 darwin && . ~/.token
 
 ## Docker
-linux && DOCKER_HOST="tcp://0.0.0.0:2375"
+# linux && DOCKER_HOST="tcp://0.0.0.0:2375"
 
 ## TMUX
 alias tmuxn='tmux new -s $(basename $PWD)'
