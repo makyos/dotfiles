@@ -36,6 +36,13 @@ function linux() {
     [ $(uname) == 'Linux'  ]
 }
 
+function dbash() {
+    docker exec -it $1 /bin/bash
+}
+
+function scan() {
+    echo $1.{1..254} | xargs -P 254 -n 1 ping -s 56 -c 1 -t 1 | grep ttl
+}
 
 #### PS1
 ## \[ \] （文字数除外）で囲わないと表示が時々おかしくなるよ
@@ -76,7 +83,7 @@ alias src="cd ~/src"
 alias sand="cd ~/src/sandbox"
 alias bs='browser-sync start --server --files "./**/*.html" --files "./**/*.css" --files "./**/*.js"'
 alias clamav="sudo freshclam;sudo clamscan -r -i"
-
+alias dps='docker ps --format "{{.Names}}\t{{.Status}}\t{{.Ports}}"'
 
 darwin && alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -s"
 darwin && alias sw="xcrun swift"
@@ -84,10 +91,7 @@ darwin && alias t="open -a /Applications/Utilities/Terminal.app ."
 darwin && alias brew_cask_upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 
 
-##
-# export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=$HOME/.go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
 
 export PATH=$PATH:/usr/local/share/npm/bin
 
@@ -114,11 +118,10 @@ tmux ls
 complete -cf sudo
 
 ## Rust
-# source $HOME/.cargo/env
+source $HOME/.cargo/env
 
 ## embulk
 export PATH="$HOME/.embulk/bin:$PATH"
-
 
 ## swift
 SWIFT_ROOT="/home/eng/Downloads/swift-4.0-RELEASE-ubuntu16.10/usr"
@@ -127,4 +130,15 @@ linux && alias swift="swift -I ${SWIFT_ROOT}/lib/swift/clang/include"
 
 ## rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
+## go
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+
+## pyenv
+export PATH="/home/eng/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PATH="$HOME/.embulk/bin:$PATH"
