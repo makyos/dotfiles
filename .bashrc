@@ -124,7 +124,7 @@ source $HOME/.cargo/env
 export PATH="$HOME/.embulk/bin:$PATH"
 
 ## swift
-SWIFT_ROOT="/home/eng/Downloads/swift-4.0-RELEASE-ubuntu16.10/usr"
+SWIFT_ROOT="$HOME/Downloads/swift-4.0-RELEASE-ubuntu16.10/usr"
 linux && export PATH=${SWIFT_ROOT}/bin:"${PATH}"
 linux && alias swift="swift -I ${SWIFT_ROOT}/lib/swift/clang/include"
 
@@ -138,7 +138,6 @@ export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init -)"
 
 ## pyenv
-export PATH="/home/eng/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-export PATH="$HOME/.embulk/bin:$PATH"
