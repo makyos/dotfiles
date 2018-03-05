@@ -32,7 +32,7 @@ inoremap <silent> jj <ESC>
 highlight Search term=standout ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
 
 let OSTYPE = system('uname')
-if OSTYPE == "Linux\n"
+if OSTYPE == "Linux\n" || OSTYPE == "Darwin\n"
   set directory=/tmp
   set backupdir=/tmp
 endif
