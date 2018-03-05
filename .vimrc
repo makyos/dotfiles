@@ -1,3 +1,4 @@
+
 set encoding=utf-8
 set fileencodings=euc-jp,sjis,iso-2022-jp,cp932,utf-8
 
@@ -17,9 +18,6 @@ set tabstop=4
 set autoindent
 set matchpairs& matchpairs+=<:>
 
-set directory=/tmp
-set backupdir=/tmp
-
 set ignorecase
 set incsearch
 set smartcase
@@ -32,5 +30,15 @@ autocmd BufWritePre * :%s/\s\+$//ge
 inoremap <silent> jj <ESC>
 
 highlight Search term=standout ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
+
+let OSTYPE = system('uname')
+if OSTYPE == "Linux\n"
+  set directory=/tmp
+  set backupdir=/tmp
+endif
+if OSTYPE == "win32\n"
+ set noswapfile
+ set nobackup
+endif
 
 
