@@ -7,7 +7,7 @@ set wildmenu
 " set list
 set scrolloff=5
 set guioptions+=R
-set number
+" set number
 set cursorline
 set nowrap
 set textwidth=0
