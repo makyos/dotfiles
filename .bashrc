@@ -12,21 +12,21 @@ function tgz () {
 }
 
 
-function rm () {
-    local path
-    for path in "$@"; do
-	# ignore any arguments
-	if [[ "$path" = -* ]]; then :
-	else
-	    local dst=${path##*/}
-	    # append the time if necessary
-	    while [ -e ~/.Trash/"$dst" ]; do
-		dst="$dst "$(date +%H-%M-%S)
-	    done
-	    mv "$path" ~/.Trash/"$dst"
-	fi
-    done
-}
+# function rm () {
+#     local path
+#     for path in "$@"; do
+# 	# ignore any arguments
+# 	if [[ "$path" = -* ]]; then :
+# 	else
+# 	    local dst=${path##*/}
+# 	    # append the time if necessary
+# 	    while [ -e ~/.Trash/"$dst" ]; do
+# 		dst="$dst "$(date +%H-%M-%S)
+# 	    done
+# 	    mv "$path" ~/.Trash/"$dst"
+# 	fi
+#     done
+# }
 
 function darwin() {
     [ $(uname) == 'Darwin' ]
@@ -75,7 +75,7 @@ darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 linux  && alias emacs='emacs -nw'
 
 alias alm="echo -n $'\a'"
-alias rm="rm"
+#alias rm="rm"
 alias gosh="rlwrap gosh"
 alias memo="emacs ~/src/memo/memo.md"
 alias v="vagrant"
