@@ -5,44 +5,8 @@ export LESSCHARSET=utf-8
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-function tgz () {
-    fname=${1%/}_$(date +"%s_$HOSTNAME").tgz
-    tar zcf $fname ${1%/}
-    ls -lh $fname
-}
-
-
-# function rm () {
-#     local path
-#     for path in "$@"; do
-# 	# ignore any arguments
-# 	if [[ "$path" = -* ]]; then :
-# 	else
-# 	    local dst=${path##*/}
-# 	    # append the time if necessary
-# 	    while [ -e ~/.Trash/"$dst" ]; do
-# 		dst="$dst "$(date +%H-%M-%S)
-# 	    done
-# 	    mv "$path" ~/.Trash/"$dst"
-# 	fi
-#     done
-# }
-
-function darwin() {
-    [ $(uname) == 'Darwin' ]
-}
-
-function linux() {
-    [ $(uname) == 'Linux'  ]
-}
-
-function dbash() {
-    docker exec -it $1 /bin/bash
-}
-
-function scan() {
-    echo $1.{1..254} | xargs -P 254 -n 1 ping -s 56 -c 1 -t 1 | grep ttl
-}
+function darwin() { [ $(uname) == 'Darwin' ]; }
+function linux()  { [ $(uname) == 'Linux'  ]; }
 
 #### PS1
 ## \[ \] （文字数除外）で囲わないと表示が時々おかしくなるよ
@@ -75,8 +39,6 @@ linux  && alias lla='ls -vla --color'
 darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 linux  && alias emacs='emacs -nw'
 
-alias alm="echo -n $'\a'"
-#alias rm="rm"
 alias gosh="rlwrap gosh"
 alias memo="emacs ~/src/memo/memo.md"
 alias v="vagrant"
@@ -89,51 +51,15 @@ alias dps='docker ps --format "{{.Names}}\t{{.Status}}\t{{.Ports}}"'
 darwin && alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -s"
 darwin && alias sw="xcrun swift"
 darwin && alias t="open -a /Applications/Utilities/Terminal.app ."
-darwin && alias brew_cask_upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 
-
-
-
-export PATH=$PATH:/usr/local/share/npm/bin
-
+#### homebrew
 darwin && export NODEBREW_ROOT=$HOME/.nodebrew
-darwin && export PATH=$NODEBREW_ROOT/current/bin:$PATH
-
-## Microsoft PICT
-export PATH=~/src/gitclone/pict:$PATH
-
-## BREW API TOKEN
 darwin && . ~/.token
-
-## Docker
-# linux && DOCKER_HOST="tcp://0.0.0.0:2375"
-
-## TMUX
-alias tmuxn='tmux new -s $(basename $PWD)'
-alias tmuxa='tmux a -t $(basename $PWD)'
-tmux ls
-
-#linux && /usr/lib/mozc/mozc_renderer &
 
 ## sudo complete
 complete -cf sudo
 
 ## Rust
-source $HOME/.cargo/env
+#source $HOME/.cargo/env
 
-## embulk
-export PATH="$HOME/.embulk/bin:$PATH"
 
-## rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-## go
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
-
-## pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
