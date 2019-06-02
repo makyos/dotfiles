@@ -5,6 +5,7 @@ export LESSCHARSET=utf-8
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
+<<<<<<< HEAD
 function tgz () {
     fname=${1%/}_$(date +"%s_$HOSTNAME").tgz
     tar zcf $fname ${1%/}
@@ -38,6 +39,10 @@ function dbash() {
 function scan() {
     echo $1.{1..254} | xargs -P 254 -n 1 ping -s 56 -c 1 -t 1 | grep ttl
 }
+=======
+function darwin() { [ $(uname) == 'Darwin' ]; }
+function linux()  { [ $(uname) == 'Linux'  ]; }
+>>>>>>> a88a8b430a4652c68567da3a252a4bd3c5a851b5
 
 
 #### PS1
@@ -47,6 +52,7 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWCOLORHINTS=1
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
+<<<<<<< HEAD
 
 function revbg() { printf "\033[07m${1}\033[00m"; }
 function redbg() { printf "\033[41m${1}\033[00m"; }
@@ -54,6 +60,16 @@ function redbg() { printf "\033[41m${1}\033[00m"; }
 # PROMPT_COMMAND=myps1
 
 PS1='\[\033[7m\]\w$(__git_ps1 "(%s)")\[\033[0m\] '
+=======
+#PS1='\[\e[1m\]\w$(__git_ps1 "(%s)")\n$ \[\e[0m\]'
+#PS1='\[\033[07m\e[1m\]\w$(__git_ps1 "(%s)")\033[00m\n$ \[\e[0m\]'
+#PS1='\[\033[07m\e[1m\]# \u@\h:\w$(__git_ps1 "(%s)") \033[00m\n# \[\e[0m\]'
+#PS1_DECO_REVERSE="\[\033[7m\]"
+#PS1_DECO_UNDLINE="\[\033[4m\]"
+#PS1_DECO_END="\[\033[0m\]"
+#PS1='\[\033[7m\] \u@\h:\w$(__git_ps1 "(%s)") \[\033[0m\]\n\$ '
+PS1='\n\[\033[7m\]\u@$(hostname -f):\w$(__git_ps1 "(%s)")\[\033[0m\]\n→ '
+>>>>>>> a88a8b430a4652c68567da3a252a4bd3c5a851b5
 
 #### ls
 alias cdd='cd ..'
@@ -72,8 +88,6 @@ linux  && alias lla='ls -vla --color'
 darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 linux  && alias emacs='emacs -nw'
 
-alias alm="echo -n $'\a'"
-#alias rm="rm"
 alias gosh="rlwrap gosh"
 alias memo="emacs ~/src/memo/memo.md"
 alias v="vagrant"
@@ -90,22 +104,21 @@ alias sakura='ssh -p 22000 makyos@www11364ue.sakura.ne.jp'
 darwin && alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -s"
 darwin && alias sw="xcrun swift"
 darwin && alias t="open -a /Applications/Utilities/Terminal.app ."
+<<<<<<< HEAD
 darwin && alias brew_cask_upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 
 
 darwin && alias fsw='fswatch -o . | xargs -n1 -I{} '
 
 export PATH=$PATH:/usr/local/share/npm/bin
+=======
+>>>>>>> a88a8b430a4652c68567da3a252a4bd3c5a851b5
 
+#### homebrew
 darwin && export NODEBREW_ROOT=$HOME/.nodebrew
-darwin && export PATH=$NODEBREW_ROOT/current/bin:$PATH
-
-## Microsoft PICT
-export PATH=~/src/gitclone/pict:$PATH
-
-## BREW API TOKEN
 darwin && . ~/.token
 
+<<<<<<< HEAD
 ## Docker
 # linux && DOCKER_HOST="tcp://0.0.0.0:2375"
 
@@ -116,19 +129,20 @@ darwin && . ~/.token
 
 #linux && /usr/lib/mozc/mozc_renderer &
 
+=======
+>>>>>>> a88a8b430a4652c68567da3a252a4bd3c5a851b5
 ## sudo complete
 complete -cf sudo
 
 ## Rust
-source $HOME/.cargo/env
+#source $HOME/.cargo/env
 
-## embulk
-export PATH="$HOME/.embulk/bin:$PATH"
+## DOCKER
+function docker-sh-cu() {
+	docker container run -u $(id -u):$(id -g) -v $PWD:$PWD -w $PWD --rm -it ${1} /bin/sh
+}
 
-## rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
+<<<<<<< HEAD
 ## go
 # export GOENV_ROOT="$HOME/.goenv"
 # export PATH="$GOENV_ROOT/bin:$PATH"
@@ -138,3 +152,9 @@ eval "$(rbenv init -)"
 # export PATH="$HOME/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
+=======
+function docker-sh() {
+	docker container run -v $PWD:$PWD -w $PWD --rm -it ${1} /bin/sh
+}
+
+>>>>>>> a88a8b430a4652c68567da3a252a4bd3c5a851b5
