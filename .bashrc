@@ -22,7 +22,7 @@ source ~/.git-prompt.sh
 #PS1_DECO_UNDLINE="\[\033[4m\]"
 #PS1_DECO_END="\[\033[0m\]"
 #PS1='\[\033[7m\] \u@\h:\w$(__git_ps1 "(%s)") \[\033[0m\]\n\$ '
-PS1='\[\033[4m\]\u@\h:\w$(__git_ps1 "(%s)")\[\033[0m\]\n→ '
+PS1='\n\[\033[7m\]\u@$(hostname -f):\w$(__git_ps1 "(%s)")\[\033[0m\]\n→ '
 
 #### ls
 alias cdd='cd ..'
@@ -63,7 +63,11 @@ complete -cf sudo
 #source $HOME/.cargo/env
 
 ## DOCKER
-function docker-sh() {
+function docker-sh-cu() {
 	docker container run -u $(id -u):$(id -g) -v $PWD:$PWD -w $PWD --rm -it ${1} /bin/sh
+}
+
+function docker-sh() {
+	docker container run -v $PWD:$PWD -w $PWD --rm -it ${1} /bin/sh
 }
 
