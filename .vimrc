@@ -1,6 +1,9 @@
 
 set encoding=utf-8
-set fileencodings=euc-jp,sjis,iso-2022-jp,cp932,utf-8
+scriptencoding utf-8
+set fileencodings=utf-8,euc-jp,cp932,iso-2022-jp
+set fileformats=unix,dos,mac
+set ambiwidth=double
 
 set wildmenu
 
@@ -15,6 +18,8 @@ set showmatch matchtime=1
 
 set imdisable
 set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set autoindent
 set matchpairs& matchpairs+=<:>
 
