@@ -72,10 +72,18 @@ complete -cf sudo
 #source $HOME/.cargo/env
 
 ## DOCKER
-function docker-sh-cu() {
-	docker container run -u $(id -u):$(id -g) -v $PWD:$PWD -w $PWD --rm -it ${1} /bin/sh
+alias dc-ps='docker container ps -a --format "table{{.ID}}\t{{.Names}}\t{{.Ports}}\t{{.Status}}"'
+function dc-run-sh-cu() {
+	docker container run -u $(id -u):$(id -g) -v $PWD:$PWD -w ${PWD} --rm -it ${1} /bin/sh
 }
-function docker-sh() {
-	docker container run -v $PWD:$PWD -w $PWD --rm -it ${1} /bin/sh
+function dc-run-sh() {
+	docker container run -v ${PWD}:${PWD}                  -w ${PWD} --rm -it ${1} /bin/sh
 }
+function dc-exec-sh-cu() {
+	docker container exec -u $(id -u):$(id -g) -it ${1} /bin/sh
+}
+function dc-exec-sh() {
+	docker container exec                      -it ${1} /bin/sh
+}
+
 
