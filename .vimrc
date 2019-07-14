@@ -46,4 +46,5 @@ if OSTYPE == "win32\n"
  set nobackup
 endif
 
+set paste
 

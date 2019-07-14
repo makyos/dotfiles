@@ -22,22 +22,18 @@ GIT_PS1_SHOWCOLORHINTS=1
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
 
-function revbg() { printf "\033[07m${1}\033[00m"; }
-function redbg() { printf "\033[41m${1}\033[00m"; }
-# function myps1() { [ $? == 0 ] && export PS1="$(revbg $(pwd)) " || export PS1="$(redbg $(pwd)) ";}
-# PROMPT_COMMAND=myps1
-
-PS1='\n\[\033[7m\]\u@$(hostname -f):\w$(__git_ps1 "(%s)")\[\033[0m\]\n→ '
+function rev()   { printf "\[\e[07m\]" ;}
+function reset() { printf "\[\e[00m\]" ;}
+function line()  { printf "\[\e[04m\]" ;}
+	PS1="\n$(rev)[\u@$(hostname -f):\w$(__git_ps1 "(%s)")]$(reset)\n--> "
 
 #### ls
-darwin && alias ls='ls -v'
-darwin && alias la='ls -va'
-darwin && alias ll='ls -vl'
-darwin && alias lla='ls -vla'
-linux  && alias ls='ls -vF --color'
-linux  && alias la='ls -va --color'
-linux  && alias ll='ls -vl --color'
-linux  && alias lla='ls -vla --color'
+darwin && alias ls='ls'
+darwin && alias la='ls -a'
+darwin && alias ll='ls -l'
+linux  && alias ls='ls    --color=auto'
+linux  && alias la='ls -A --color=auto'
+linux  && alias ll='ls -l --color=auto'
 
 #### emacs
 darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
@@ -74,16 +70,38 @@ complete -cf sudo
 ## DOCKER
 alias dc-ps='docker container ps -a --format "table{{.ID}}\t{{.Names}}\t{{.Ports}}\t{{.Status}}"'
 function dc-run-sh-cu() {
-	docker container run -u $(id -u):$(id -g) -v $PWD:$PWD -w ${PWD} --rm -it ${1} /bin/sh
+	docker container run -e USER=$USER -u $(id -u):$(id -g) -v $PWD:$PWD -w ${PWD} --rm -it ${1} /bin/sh
 }
 function dc-run-sh() {
-	docker container run -v ${PWD}:${PWD}                  -w ${PWD} --rm -it ${1} /bin/sh
+	docker container run -v ${PWD}:${PWD} -w ${PWD} --rm -it ${1} /bin/sh
 }
 function dc-exec-sh-cu() {
-	docker container exec -u $(id -u):$(id -g) -it ${1} /bin/sh
+	docker container exec -e USER=$USER -u $(id -u):$(id -g) -it ${1} /bin/sh
 }
 function dc-exec-sh() {
-	docker container exec                      -it ${1} /bin/sh
+	docker container exec -it ${1} /bin/sh
 }
+
+
+function dcrun() { docker container run -e USER=$USER -u $(id -u):$(id -g) -v $PWD:$PWD -w $PWD --rm -it ${@} ;}
+
+	NODE="-p 3000:3000 node:lts-alpine"
+		function node() { dcrun $NODE "node ${@}" ;}
+		function npm()  { dcrun $NODE "npm  ${@}" ;}
+
+	RUST="rustlang/rust:nightly"
+		function cargo() { dcrun $RUST "cargo ${@}" ;}
+
+	PYTHON2="python:2-alpine"
+		function py2()  { dcrun $PYTHON2 python ${@} ;}
+		function pip2() { dcrun $PYTHON2 pip ${@} ;}
+
+
+function fw() { sudo firewall-cmd --zone=public --list-all ;}
+function fw-open  { sudo firewall-cmd --zone=public --add-port=${1}/tcp;    fw ;}
+function fw-close { sudo firewall-cmd --zone=public --remove-port=${1}/tcp; fw ;}
+
+
+
 
 
