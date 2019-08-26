@@ -15,6 +15,7 @@ set cursorline
 set nowrap
 set textwidth=0
 set showmatch matchtime=1
+set laststatus=2
 
 set imdisable
 set tabstop=4

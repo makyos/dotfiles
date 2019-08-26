@@ -39,14 +39,14 @@ linux  && alias ll='ls -l --color=auto'
 darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 linux  && alias emacs='emacs -nw'
 
-alias gosh="rlwrap gosh"
-alias memo="emacs ~/src/memo/memo.md"
 alias src="cd ~/src"
+alias junk="cd ~/src/JUNK"
 alias sand="cd ~/src/sandbox"
 alias bs='browser-sync start --server --files "./**/*.html" --files "./**/*.css" --files "./**/*.js"'
 alias clamav="sudo freshclam;sudo clamscan -r -i"
 #alias sakura='mosh --ssh="ssh -p 22000" makyos@www11364ue.sakura.ne.jp'
 alias sakura='ssh -p 22000 makyos@www11364ue.sakura.ne.jp'
+alias bashrc=". ~/.bashrc"
 
 darwin && alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -s"
 darwin && alias sw="xcrun swift"
@@ -64,8 +64,6 @@ darwin && . ~/.token
 ## sudo complete
 complete -cf sudo
 
-## Rust
-#source $HOME/.cargo/env
 
 ## DOCKER
 alias dc-ps='docker container ps -a --format "table{{.ID}}\t{{.Names}}\t{{.Ports}}\t{{.Status}}"'
@@ -73,7 +71,7 @@ function dc-run-sh-cu() {
 	docker container run -e USER=$USER -u $(id -u):$(id -g) -v $PWD:$PWD -w ${PWD} --rm -it ${1} /bin/sh
 }
 function dc-run-sh() {
-	docker container run -v ${PWD}:${PWD} -w ${PWD} --rm -it ${1} /bin/sh
+	docker container run -v ${PWD}:${PWD}:delegated -w ${PWD} --rm -it ${1} /bin/sh
 }
 function dc-exec-sh-cu() {
 	docker container exec -e USER=$USER -u $(id -u):$(id -g) -it ${1} /bin/sh
@@ -83,25 +81,41 @@ function dc-exec-sh() {
 }
 
 
-function dcrun() { docker container run -e USER=$USER -u $(id -u):$(id -g) -v $PWD:$PWD -w $PWD --rm -it ${@} ;}
+function dcrun() {
+	docker container run \
+		-e USER=${USER} \
+		-u $(id -u):$(id -g) \
+		-v ${PWD}:${PWD}:delegated \
+		-w ${PWD} \
+		--rm -it ${@}
+}
 
 	NODE="-p 3000:3000 node:lts-alpine"
 		function node() { dcrun $NODE "node ${@}" ;}
 		function npm()  { dcrun $NODE "npm  ${@}" ;}
 
-	RUST="rustlang/rust:nightly"
-		function cargo() { dcrun $RUST "cargo ${@}" ;}
+#	RUST="rustlang/rust:nightly"
+	RUST="rust:latest"
+		function cargo()  {
+			mkdir -p ${PWD}/registry
+			dcrun -v ${PWD}/registry:/usr/local/cargo/registry $RUST "cargo  ${@}"
+		}
+		function rustup() { dcrun $RUST "rustup ${@}" ;}
 
 	PYTHON2="python:2-alpine"
 		function py2()  { dcrun $PYTHON2 python ${@} ;}
-		function pip2() { dcrun $PYTHON2 pip ${@} ;}
+		function pip2() { dcrun $PYTHON2 pip    ${@} ;}
+#		function pip2() { dcrun $PYTHON2 pip -t ./pip ${@} ;}
 
 
-function fw() { sudo firewall-cmd --zone=public --list-all ;}
-function fw-open  { sudo firewall-cmd --zone=public --add-port=${1}/tcp;    fw ;}
-function fw-close { sudo firewall-cmd --zone=public --remove-port=${1}/tcp; fw ;}
+function fw()       { sudo firewall-cmd --zone=public --list-all ;}
+function fw-open()  { sudo firewall-cmd --zone=public --add-port=${1}/tcp;    fw ;}
+function fw-close() { sudo firewall-cmd --zone=public --remove-port=${1}/tcp; fw ;}
 
+function today() { date +%Y-%m%d ;}
 
+function pora() { if [ -p /dev/stdin ]; then cat -; else echo ${@}; fi }
 
+function killmosh () { kill $(pidof mosh-server) ;}
 
 
