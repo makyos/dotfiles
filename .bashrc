@@ -95,10 +95,11 @@ function dcrun() {
 		function npm()  { dcrun $NODE "npm  ${@}" ;}
 
 #	RUST="rustlang/rust:nightly"
-	RUST="rust:latest"
+#	RUST="rust:latest"                   ; RUSTREG="/usr/local/cargo/registry"
+	RUST="ekidd/rust-musl-builder:latest"; RUSTREG="/home/rust/.cargo/registry"
 		function cargo()  {
 			mkdir -p ${PWD}/registry
-			dcrun -v ${PWD}/registry:/usr/local/cargo/registry $RUST "cargo  ${@}"
+			dcrun -v ${PWD}/registry:$RUSTREG $RUST "cargo ${@}"
 		}
 		function rustup() { dcrun $RUST "rustup ${@}" ;}
 
@@ -114,8 +115,30 @@ function fw-close() { sudo firewall-cmd --zone=public --remove-port=${1}/tcp; fw
 
 function today() { date +%Y-%m%d ;}
 
-function pora() { if [ -p /dev/stdin ]; then cat -; else echo ${@}; fi }
+function pora() { if [ -p /dev/stdin ]; then cat -; else echo ${@}; fi ;}
 
-function killmosh () { kill $(pidof mosh-server) ;}
+function killmosh() { kill $(pidof mosh-server) ;}
+
+function tgz() {
+	local D=/tmp/${HOSTNAME}__$(yyyy)-$(mo)$(dd)
+	for f in "$(pora ${@})"; do
+		ff=$(readlink -f ${f})
+		dd=${D}$(dirname ${ff})
+		mkdir -p ${dd}
+		cd $(dirname ${ff})
+		tar zcf ${dd}/$(basename ${ff}.tgz) $(basename ${ff})
+		cd - > /dev/null
+		ls -lh ${dd}/$(basename ${ff}.tgz)
+	done
+}
+
+function yyyy() { date "+%Y" ;}
+function   mo() { date "+%m" ;}
+function   dd() { date "+%d" ;}
+function   hh() { date "+%H" ;}
+function   mi() { date "+%M" ;}
+function   ss() { date "+%S" ;}
+function   ns() { date "+%N" ;}
+function   wd() { date "+%a" ;}
 
 
