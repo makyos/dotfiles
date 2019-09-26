@@ -141,4 +141,10 @@ function   ss() { date "+%S" ;}
 function   ns() { date "+%N" ;}
 function   wd() { date "+%a" ;}
 
+function httpd() {
+	fw-open 8080
+	echo ${HOSTNAME}:8080
+	python -m SimpleHTTPServer 8080
+	fw-close 8080
+}
 
