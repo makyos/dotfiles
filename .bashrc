@@ -148,3 +148,16 @@ function httpd() {
 	fw-close 8080
 }
 
+function findnew() {
+	inai_sec=${1}
+	while true; do
+		if [ ! -z $(find ${2} -type f -newermt "$(date "+%Y-%m-%d %H:%M:%S" --date "${inai_sec} seconds ago")") ]; then
+			eval "${3}"
+			echo; echo
+		fi
+		sleep ${inai_sec}
+	done
+}
+
+
+

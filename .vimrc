@@ -1,6 +1,8 @@
+syntax on
+colorscheme desert
+scriptencoding utf-8
 
 set encoding=utf-8
-scriptencoding utf-8
 set fileencodings=utf-8,euc-jp,cp932,iso-2022-jp
 set fileformats=unix,dos,mac
 set ambiwidth=double
@@ -15,13 +17,14 @@ set cursorline
 set nowrap
 set textwidth=0
 set showmatch matchtime=1
+set statusline=%F%m%{'('.(&fenc!=''?&fenc:&enc).'.'.&ff.')'}%=[%l/%L,%c]
 set laststatus=2
 
 set imdisable
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set autoindent
+" set autoindent
 set matchpairs& matchpairs+=<:>
 
 set ignorecase
@@ -32,6 +35,7 @@ nmap <silent> <Esc><Esc> :nohlsearch<CR>
 
 
 autocmd BufWritePre * :%s/\s\+$//ge
+" autocmd BufNewFile,BufRead *.rs  set filetype=perl
 
 inoremap <silent> jj <ESC>
 
@@ -47,5 +51,5 @@ if OSTYPE == "win32\n"
  set nobackup
 endif
 
-set paste
+" set paste
 
