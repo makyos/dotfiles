@@ -29,15 +29,18 @@ function reset() { echo -n "\[\e[00m\]" ;}
 function line()  { echo -n "\[\e[04m\]" ;}
 	#PS1="\n$(rev)[\u@$(hostname -f):\w$(__git_ps1 "(%s)")]$(reset)\n--> "
 	#PS1="[\u@$(hostname -f):\w$(__git_ps1 "(%s)")] "
-	PS1="$(rev)[\w]$(reset) "
+	#PS1="$(rev)[\w]$(reset) "
+	PS1="$(rev)[\w]$(__git_ps1 "(%s)")$(reset) "
 	
 #### ls
-darwin && alias ls='ls'
-darwin && alias la='ls -a'
-darwin && alias ll='ls -l'
-linux  && alias ls='ls    --color=auto'
-linux  && alias la='ls -A --color=auto'
-linux  && alias ll='ls -l --color=auto'
+darwin && alias  ls='ls'
+darwin && alias  la='ls -a'
+darwin && alias  ll='ls -l'
+darwin && alias lla='ls -la'
+linux  && alias  ls='ls    --color=auto'
+linux  && alias  la='ls -A --color=auto'
+linux  && alias  ll='ls -l --color=auto'
+linux  && alias lla='ls -la --color=auto'
 
 #### emacs
 darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
