@@ -1,9 +1,7 @@
 ;;;; <C-x> <RET> <f> 
 ;;;;
 
-
 (setq vc-follow-symlinks t)
-
 (global-font-lock-mode t)
 
 ;;;; LANG
@@ -12,17 +10,19 @@
 
 
 ;; PACKAGE
-;(require 'package)
-;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-;(package-initialize)
-;; (require 'melpa)
+(require 'package)
+;(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/") t)
+(package-initialize)
+
+
 
 ;;;; DISP(APP)
 (setq inhibit-startup-message t)
 (menu-bar-mode 0)
 (line-number-mode t) (column-number-mode t)
-(set-scroll-bar-mode nil)
 
 ;;;; TRUNCATE
 (setq-default truncate-lines 0)
@@ -32,25 +32,15 @@
 ;; (setq linum-format "%4d: ")
 
 ;;;; HILIGHT-LINE
-;; (global-hl-line-mode)
-;; ;; (custom-set-faces '(hl-line ((t (:background "gainsboro")))))
-;; (custom-set-faces '(hl-line ((t (:background "gray70")))))
-
-
+(global-hl-line-mode)
 
 ;;;; (){}[]
 (show-paren-mode 1)
 (setq show-paren-style 'mixed)
 (setq skeleton-pair 1)
 
-
-;;;; THEME
-;; (load-theme 'deeper-blue t)
-;; (load-theme 'misterioso t)
-
-
 ;;;; SCROLL
-(setq scroll-conservatively 44) (setq scroll-margin 5)
+(setq scroll-conservatively 44) (setq scroll-margin 3)
 
 ;;;; SEARCH
 (setq completion-ignore-case t)
@@ -70,41 +60,12 @@
 (global-set-key "\C-cm" (lambda () (interactive) (find-file "~/src/memo/memo.md")))
 (global-set-key "\C-cs" (lambda () (interactive) (switch-to-buffer "*scratch*")))
 (global-set-key "\C-x9" 'follow-delete-other-windows-and-split)
-
-
-
-(add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
-
-;(require 'yaml-mode)
-;(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-
-;(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
-;(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-;(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-;(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;(add-to-list 'auto-mode-alist '("www" . js2-mode))
-;(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-;(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-mode))
-
-;(add-to-list 'auto-mode-alist '(".xmobarrc" . haskell-mode))
-
-;; (require 'web-mode)
-;; (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.tpl\\'"  . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.php\\'"  . web-mode))
-
-
+(global-set-key "\C-b" 'set-mark-command)
 
 ;;;; C-a to col 0 & line head
 (defun my-move-beginning-of-line ()
-  (interactive)
-  (if (bolp)
-      (back-to-indentation)    
-    (beginning-of-line)))
+  (interactive) (if (bolp) (back-to-indentation) (beginning-of-line)))
 (global-set-key "\C-a" 'my-move-beginning-of-line)
-
 
 
 ;;;; SHELL MODE
@@ -117,48 +78,3 @@
   "Set `ansi-color^for-comint-mode'to t." t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
-
-;;;; GAUCHE
-;; (setq process-coding-system-alist
-;;       (cons '("gosh" utf-8 . utf-8) process-coding-system-alist))
-;; (setq scheme-program-name "gosh -i")
-;; (autoload 'scheme-mode "cmuscheme" "Major mode for Scheme." t)
-;; (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme process." t)
-;; (defun scheme-other-window ()
-;;   "Run Gauche on other window"
-;;   (interactive)
-;;   (split-window-horizontally (/ (frame-width) 2))
-;;   (let ((buf-name (buffer-name (current-buffer))))
-;;     (scheme-mode)
-;;     (switch-to-buffer-other-window
-;;      (get-buffer-create "*scheme*"))
-;;     (run-scheme scheme-program-name)
-;;     (switch-to-buffer-other-window
-;;      (get-buffer-create buf-name))))
-;; (define-key global-map
-;;   "\C-cg" 'scheme-other-window)
-
-
-;;;; auto-complete
-;; (add-to-list 'load-path "~/.emacs.d/auto-complete-1.3.1")
-;; (require 'auto-complete)
-;; (require 'auto-complete-config)
-;; (global-auto-complete-mode t)
-;; (setq-default ac-sources '(ac-source-filename ac-source-words-in-same-mode-buffers))
-;; (add-hook 'emacs-lisp-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-symbols t)))
-
-
-;;;; haskell-mode
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;; (add-hook 'haskell-mode-hook 'font-lock-mode)
-;; (add-hook 'haskell-mode-hook 'imenu-add-menubar-index)
-
-;;;; indent-guide
-;; (indent-guide-global-mode)
-
-;;;; magit
-;(require 'magit)
-
-;;;; theme
-;; (load-theme 'misterioso t)
