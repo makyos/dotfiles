@@ -9,7 +9,7 @@
 (prefer-coding-system 'utf-8)
 
 
-;; PACKAGE
+;;;; PACKAGE
 (require 'package)
 ;(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
@@ -33,6 +33,7 @@
 
 ;;;; HILIGHT-LINE
 (global-hl-line-mode)
+(set-face-background 'hl-line "#000000")
 
 ;;;; (){}[]
 (show-paren-mode 1)
