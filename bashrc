@@ -29,10 +29,12 @@ source ~/.git-prompt.sh
 function rev()   { echo -n "\[\e[07m\]" ;}
 function reset() { echo -n "\[\e[00m\]" ;}
 function line()  { echo -n "\[\e[04m\]" ;}
-	#PS1="\n$(rev)[\u@$(hostname -f):\w$(__git_ps1 "(%s)")]$(reset)\n--> "
-	#PS1="[\u@$(hostname -f):\w$(__git_ps1 "(%s)")] "
-	#PS1="$(rev)[\w]$(reset) "
-	PS1="$(rev)[\w]$(__git_ps1 "(%s)")$(reset) "
+#PS1="\n$(rev)[\u@$(hostname -f):\w$(__git_ps1 "(%s)")]$(reset)\n--> "
+#PS1="[\u@$(hostname -f):\w$(__git_ps1 "(%s)")] "
+#PS1="$(rev)[\w]$(reset) "
+#PS1="$(rev)[\w]$(__git_ps1 "(%s)")$(reset) "
+#PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
+PROMPT_COMMAND='__git_ps1 "$(rev)[\w]$(reset)" " "'
 	
 #### ls
 darwin && alias  ls='ls'
