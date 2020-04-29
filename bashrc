@@ -45,13 +45,13 @@ linux  && alias  ll='ls -l --color=auto'
 linux  && alias lla='ls -la --color=auto'
 
 #### emacs
-#darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 linux  && alias emacs='emacs -nw'
 linux  && alias e='emacs -nw'
 linux  && alias vim='nvim'
 linux  && alias v='nvim'
 
 alias src="cd ~/src"
+alias dot="cd ~/src/dotfiles"
 alias junk="cd ~/src/JUNK"
 alias sand="cd ~/src/sandbox"
 alias bs='browser-sync start --server --files "./**/*.html" --files "./**/*.css" --files "./**/*.js"'
