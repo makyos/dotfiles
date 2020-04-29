@@ -19,16 +19,17 @@ function scan() {
 
 
 #### PS1
-## \[ \] （文字数除外）で囲わないと表示が時々おかしくなるよ
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWCOLORHINTS=1
+GIT_PS1_SHOWDIRTYSTATE=true      # *:unstaged, +:staged
+GIT_PS1_SHOWUNTRACKEDFILES=true  # %:untracked
+GIT_PS1_SHOWSTASHSTATE=true      # $:stashed
+GIT_PS1_SHOWUPSTREAM=auto        # >:ahead, <:behind
+GIT_PS1_STATESEPARATOR=':'
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
-
 function rev()   { echo -n "\[\e[07m\]" ;}
 function reset() { echo -n "\[\e[00m\]" ;}
 function line()  { echo -n "\[\e[04m\]" ;}
+## \[ \] （文字数除外）で囲わないと表示が時々おかしくなるよ
 #PS1="\n$(rev)[\u@$(hostname -f):\w$(__git_ps1 "(%s)")]$(reset)\n--> "
 #PS1="[\u@$(hostname -f):\w$(__git_ps1 "(%s)")] "
 #PS1="$(rev)[\w]$(reset) "
@@ -37,10 +38,10 @@ function line()  { echo -n "\[\e[04m\]" ;}
 PROMPT_COMMAND='__git_ps1 "$(rev)[\w]$(reset)" " "'
 	
 #### ls
-darwin && alias  ls='ls'
-darwin && alias  la='ls -a'
-darwin && alias  ll='ls -l'
-darwin && alias lla='ls -la'
+darwin && alias  ls='exa'
+darwin && alias  la='exa -a'
+darwin && alias  ll='exa -l'
+darwin && alias lla='exa -la'
 linux  && alias  ls='ls    --color=auto'
 linux  && alias  la='ls -A --color=auto'
 linux  && alias  ll='ls -l --color=auto'
