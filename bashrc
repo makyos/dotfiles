@@ -31,8 +31,8 @@ function reset() { echo -n "\[\e[00m\]" ;}
 function line()  { echo -n "\[\e[04m\]" ;}
 	#PS1="\n$(rev)[\u@$(hostname -f):\w$(__git_ps1 "(%s)")]$(reset)\n--> "
 	#PS1="[\u@$(hostname -f):\w$(__git_ps1 "(%s)")] "
-	PS1="$(rev)[\w]$(reset) "
-	#PS1="$(rev)[\w]$(__git_ps1 "(%s)")$(reset) "
+	#PS1="$(rev)[\w]$(reset) "
+	PS1="$(rev)[\w]$(__git_ps1 "(%s)")$(reset) "
 	
 #### ls
 darwin && alias  ls='ls'
