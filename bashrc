@@ -45,9 +45,11 @@ linux  && alias  ll='ls -l --color=auto'
 linux  && alias lla='ls -la --color=auto'
 
 #### emacs
-darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+#darwin && alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 linux  && alias emacs='emacs -nw'
+linux  && alias e='emacs -nw'
 linux  && alias vim='nvim'
+linux  && alias v='nvim'
 
 alias src="cd ~/src"
 alias junk="cd ~/src/JUNK"
@@ -65,7 +67,7 @@ alias @="tmux a -t 0 -d"
 alias .tmux='vim ~/.tmux.conf'
 
 darwin && alias wifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -s"
-darwin && alias sw="xcrun swift"
+#darwin && alias sw="xcrun swift"
 darwin && alias t="open -a /Applications/Utilities/Terminal.app ."
 darwin && alias brew_cask_upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 
