@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export PATH=/usr/local/sbin:$PATH
-export PATH=~/usr/bin:$PATH
+export PATH=~/bin:$PATH
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export CLICOLOR=1

@@ -49,6 +49,8 @@
 ;;;; AUTOSAVE
 (setq auto-save-default nil)
 (setq make-backup-files nil)
+(setq auto-save-list-file-prefix nil)
+(setq create-lockfiles nil)
 
 ;;;; BELL
 (setq visible-bell t)
