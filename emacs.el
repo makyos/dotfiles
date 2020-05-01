@@ -81,3 +81,22 @@
   "Set `ansi-color^for-comint-mode'to t." t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
+
+;;; RUST
+(add-to-list 'exec-path (expand-file-name "~/.cargo/bin/"))
+(autoload 'rust-mode "rust-mode" nil t)
+(setq rust-format-on-save t)
+;(define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
+
+(eval-after-load "rust-mode" '(setq-default rust-format-on-save t))
+
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+(add-hook 'racer-mode-hook #'eldoc-mode)
+
+(add-hook 'racer-mode-hook (lambda ()
+			     (company-mode)
+                             ;;; この辺の設定はお好みで
+                             (set (make-variable-buffer-local 'company-idle-delay) 0.1)
+                             (set (make-variable-buffer-local 'company-minimum-prefix-length) 0)))
