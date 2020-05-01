@@ -48,8 +48,8 @@ linux  && alias  ll='ls -l --color=auto'
 linux  && alias lla='ls -la --color=auto'
 
 #### emacs
-linux  && alias emacs='emacs -nw'
-linux  && alias e='emacs -nw'
+alias emacs='emacs -nw'
+alias e='emacs -nw'
 linux  && alias vim='nvim'
 linux  && alias v='nvim'
 
