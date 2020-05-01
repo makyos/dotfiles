@@ -85,30 +85,14 @@
 ;;; RUST
 (add-to-list 'exec-path (expand-file-name "~/.cargo/bin/"))
 (autoload 'rust-mode "rust-mode" nil t)
-(setq rust-format-on-save t)
-;(define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
-
+;(setq rust-format-on-save t)
 (eval-after-load "rust-mode" '(setq-default rust-format-on-save t))
-
 (with-eval-after-load 'rust-mode
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-
+;; racer
+(add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
-
 (add-hook 'racer-mode-hook (lambda ()
 			     (company-mode)
-                             ;;; この辺の設定はお好みで
                              (set (make-variable-buffer-local 'company-idle-delay) 0.1)
                              (set (make-variable-buffer-local 'company-minimum-prefix-length) 0)))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (rust-mode flycheck-rust))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
