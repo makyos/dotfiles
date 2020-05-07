@@ -83,16 +83,20 @@
 
 
 ;;; RUST
-(add-to-list 'exec-path (expand-file-name "~/.cargo/bin/"))
-(autoload 'rust-mode "rust-mode" nil t)
-;(setq rust-format-on-save t)
-(eval-after-load "rust-mode" '(setq-default rust-format-on-save t))
-(with-eval-after-load 'rust-mode
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-;; racer
-(add-hook 'rust-mode-hook #'racer-mode)
+(add-to-list 'exec-path(expand-file-name "~/.cargo/bin/"))
+(eval-after-load "rust-mode"
+  '(setq-default rust-format-on-save t))
+
+(add-hook 'rust-mode-hook
+	  (lambda ()
+	    (racer-mode)
+	    (flycheck-rust-setup)
+	    (flycheck-mode)))
+
 (add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook (lambda ()
-			     (company-mode)
-                             (set (make-variable-buffer-local 'company-idle-delay) 0.1)
-                             (set (make-variable-buffer-local 'company-minimum-prefix-length) 0)))
+
+(add-hook 'racer-mode-hook
+	  (lambda ()
+	    (company-mode)
+	    (set (make-variable-buffer-local 'company-idle-delay) 0)
+	    (set (make-variable-buffer-local 'company-minimum-prefix-length) 2)))
