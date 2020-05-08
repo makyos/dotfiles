@@ -5,7 +5,7 @@ export PATH=~/bin:$PATH
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+#export LSCOLORS=GxFxCxDxBxegedabagaced
 
 alias node="~/node/node-v13.12.0-linux-x64/bin/node"
 alias  npm="~/node/node-v13.12.0-linux-x64/bin/npm"

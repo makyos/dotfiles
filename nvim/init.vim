@@ -48,6 +48,8 @@ highlight Search term=standout ctermfg=0 ctermbg=1 guifg=Black guibg=Red
 set statusline=%F%m%{'('.(&fenc!=''?&fenc:&enc).'.'.&ff.')'}%=[%l/%L,%c]
 set laststatus=2
 set cmdheight=2
+set signcolumn=yes
+highlight clear SignColumn
 
 
 """
