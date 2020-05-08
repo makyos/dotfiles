@@ -52,6 +52,9 @@
 (setq auto-save-list-file-prefix nil)
 (setq create-lockfiles nil)
 
+;;;; SAVE-PLACE
+(save-place-mode 1)
+
 ;;;; BELL
 (setq visible-bell t)
 (setq kill-whole-line t)
