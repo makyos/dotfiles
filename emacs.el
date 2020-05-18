@@ -17,7 +17,8 @@
 (add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/") t)
 (package-initialize)
 
-
+;;;; THEME
+(load-theme 'tsdh-light t)
 
 ;;;; DISP(APP)
 (setq inhibit-startup-message t)
@@ -33,7 +34,7 @@
 
 ;;;; HILIGHT-LINE
 (global-hl-line-mode)
-(set-face-background 'hl-line "#000000")
+;(set-face-background 'hl-line "#000000")
 
 ;;;; (){}[]
 (show-paren-mode 1)
