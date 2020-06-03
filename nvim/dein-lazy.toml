@@ -42,3 +42,7 @@ on_i  = 1
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
 
+[[plugins]]
+repo = 'leafOfTree/vim-svelte-plugin'
+on_ft = ['svelte']
+

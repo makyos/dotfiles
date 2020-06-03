@@ -35,7 +35,7 @@ function line()  { echo -n "\[\e[04m\]" ;}
 #PS1="$(rev)[\w]$(reset) "
 #PS1="$(rev)[\w]$(__git_ps1 "(%s)")$(reset) "
 #PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
-PROMPT_COMMAND='__git_ps1 "$(rev)[\w]$(reset)" " "'
+PROMPT_COMMAND='__git_ps1 "$(rev)[${HOSTNAME}:\w]$(reset)" " "'
 	
 #### ls
 darwin && alias  ls='exa'
