@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 export PATH=/usr/local/sbin:$PATH
 export PATH=~/bin:$PATH
 export LANG=ja_JP.UTF-8
@@ -36,7 +38,7 @@ function line()  { echo -n "\[\e[04m\]" ;}
 #PS1="$(rev)[\w]$(__git_ps1 "(%s)")$(reset) "
 #PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
 PROMPT_COMMAND='__git_ps1 "$(rev)[${HOSTNAME}:\w]$(reset)" " "'
-	
+
 #### ls
 darwin && alias  ls='exa'
 darwin && alias  la='exa -a'
