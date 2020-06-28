@@ -56,7 +56,7 @@ highlight clear SignColumn
 """ SUFFIX and filetype
 """
 
-autocmd BufRead,BufNewFile *.svelte set filetype=html
+"autocmd BufRead,BufNewFile *.svelte set filetype=html
 "autocmd BufRead,BufNewFile *.toml   set filetype=yaml
 
 
@@ -96,7 +96,7 @@ if dein#load_state('~/.cache/dein')
 	call dein#save_state()
 endif
 
-filetype plugin indent on
+"filetype plugin indent on
 syntax enable
 
 if dein#check_install()

@@ -7,8 +7,8 @@ export LESSCHARSET=utf-8
 export CLICOLOR=1
 #export LSCOLORS=GxFxCxDxBxegedabagaced
 
-alias node="~/node/node-v13.12.0-linux-x64/bin/node"
-alias  npm="~/node/node-v13.12.0-linux-x64/bin/npm"
+#alias node="~/node/node-v13.12.0-linux-x64/bin/node"
+#alias  npm="~/node/node-v13.12.0-linux-x64/bin/npm"
 
 function darwin() { [ $(uname) == 'Darwin' ]; }
 function linux()  { [ $(uname) == 'Linux'  ]; }
@@ -201,4 +201,9 @@ function green()   { printf "%s\n" "$(tput setaf 2)${1}$(tput sgr0)" ;}
 function yellow()  { printf "%s\n" "$(tput setaf 3)${1}$(tput sgr0)" ;}
 function cyan()    { printf "%s\n" "$(tput setaf 6)${1}$(tput sgr0)" ;}
 
-
+function code() {
+    docker run -it -p 0.0.0.0:8080:8080 \
+	   -v "$PWD:/home/coder/project" \
+	   -u "$(id -u):$(id -g)" \
+	   codercom/code-server:latest
+}
